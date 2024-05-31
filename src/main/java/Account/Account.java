@@ -3,7 +3,10 @@ package Account;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Account {
     @Getter
@@ -16,7 +19,7 @@ public class Account {
             throw new IllegalArgumentException(" Имя не может быть пустым");
         this.setName(name);
         this.mapVal = new HashMap<>();
-       //this.commands = new ArrayDeque<>();
+
 
     }
 
@@ -32,10 +35,10 @@ public class Account {
         this.name = name;
     }
 
+    public Map<Currence, Integer> getMapVal() {
+        return new HashMap<>(mapVal);
+    }
 
-//    public HashMap<Currence, Integer> getMapVal() {
-//        return new HashMap<>(this.mapVal);
-//    }
 
     public void addCur(@NotNull Currence cur, Integer collCur) {
         if (collCur < 0) throw new IllegalArgumentException("Не возможно добавить отрицательное число");
@@ -59,7 +62,6 @@ public class Account {
 
         commands.pop().perform();
 
-        System.out.println("--------this: " + this);
         return this;
 
     }
@@ -86,18 +88,6 @@ public class Account {
     }
 
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Account account = (Account) o;
-        return Objects.equals(name, account.name) && Objects.equals(mapVal, account.mapVal);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, mapVal);
-    }
 
     @Override
     public String toString() {

@@ -2,6 +2,9 @@ package Account;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class AccountTest {
@@ -13,20 +16,18 @@ class AccountTest {
     void save() throws CloneNotSupportedException {
 
         Account acc = new Account("Initname");
-        Account acc2 = new Account("Initname");
-
         acc.addCur(Currence.EUR, 300);
-        acc2.addCur(Currence.EUR, 300);
-
+        String oldname = acc.getName();
+        Map mapval = new HashMap(acc.getMapVal());
         Leadable qs1 = acc.Save();
-
+        acc.addCur(Currence.EUR, 500);
+        acc.addCur(Currence.RUB, 300);
         acc.setName("newname");
-
-        acc.addCur(Currence.RUB, 4300);
-
         qs1.load();
+        //acc.addCur(Currence.RUB, 300);
 
-        assertEquals(acc, acc2);
+        assertEquals(oldname, acc.getName());
+        assertEquals(mapval, acc.getMapVal());
 
 
     }
