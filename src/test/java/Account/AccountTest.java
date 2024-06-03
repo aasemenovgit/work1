@@ -28,8 +28,6 @@ class AccountTest {
 
         assertEquals(oldname, acc.getName());
         assertEquals(mapval, acc.getMapVal());
-
-
     }
 
     @Test
