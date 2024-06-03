@@ -14,7 +14,6 @@ class AccountTest {
 
     @Test
     void save() throws CloneNotSupportedException {
-
         Account acc = new Account("Initname");
         acc.addCur(Currence.EUR, 300);
         String oldname = acc.getName();
